@@ -1,26 +1,43 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { ApplicationErrorFilter } from './entrypoints/http/shared/application-error.filter';
 
 async function bootstrap() {
-  const appContext = await NestFactory.createApplicationContext(AppModule, {
+  const app = await NestFactory.create(AppModule, {
     logger: ['log', 'error', 'warn', 'debug', 'verbose'],
   });
 
-  const config = appContext.get(ConfigService);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
 
-  // Boilerplate: TCP microservice transport (can be changed later to NATS/RMQ/Kafka/etc).
-  const host = config.get<string>('MICROSERVICE_HOST', '0.0.0.0');
-  const port = config.get<number>('MICROSERVICE_PORT', 3001);
+  app.useGlobalFilters(new ApplicationErrorFilter());
 
-  const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-    transport: Transport.TCP,
-    options: { host, port },
-  });
+  const config = app.get(ConfigService);
+  const port = config.get<number>('PORT', 3000);
+  const swaggerEnabled = config.get<string>('SWAGGER_ENABLED', 'true') === 'true';
 
-  await microservice.listen();
+  if (swaggerEnabled) {
+    const swaggerConfig = new DocumentBuilder()
+      .setTitle('Identity Service')
+      .setDescription('Identity Service API')
+      .setVersion('1.0.0')
+      .build();
+
+    const document = SwaggerModule.createDocument(app, swaggerConfig);
+    SwaggerModule.setup('docs', app, document);
+  }
+
+  await app.listen(port);
 }
 
 void bootstrap();
