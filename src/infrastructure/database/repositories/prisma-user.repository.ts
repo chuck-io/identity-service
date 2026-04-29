@@ -2,14 +2,29 @@ import { Injectable } from '@nestjs/common';
 
 import type { UserCreateInput, UserRepository, UserUpdateInput } from '../../../application/ports/user.repository';
 import { PrismaService } from '../prisma/prisma.service';
+import { DataEncryptionService } from '../../security/crypto/data-encryption.service';
+import { PasswordHasherService } from '../../security/password/password-hasher.service';
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly encryption: DataEncryptionService,
+    private readonly passwordHasher: PasswordHasherService,
+  ) {}
 
-  create(input: UserCreateInput) {
+  async create(input: UserCreateInput) {
+    const data: Record<string, unknown> = { ...input };
+
+    if (typeof input.personRegistrationNumber === 'string' && input.personRegistrationNumber.length > 0) {
+      data.personRegistrationNumber = this.encryption.encrypt(input.personRegistrationNumber);
+      data.personRegistrationNumberHash = this.encryption.hashDeterministic(input.personRegistrationNumber);
+    }
+
+    data.password = await this.passwordHasher.hash(input.password);
+
     return this.prisma.user.create({
-      data: input,
+      data: data as never,
       select: {
         uuid: true,
         companyId: true,
@@ -54,10 +69,21 @@ export class PrismaUserRepository implements UserRepository {
     });
   }
 
-  updateByUuid(uuid: string, input: UserUpdateInput) {
+  async updateByUuid(uuid: string, input: UserUpdateInput) {
+    const data: Record<string, unknown> = { ...input };
+
+    if (typeof input.personRegistrationNumber === 'string' && input.personRegistrationNumber.length > 0) {
+      data.personRegistrationNumber = this.encryption.encrypt(input.personRegistrationNumber);
+      data.personRegistrationNumberHash = this.encryption.hashDeterministic(input.personRegistrationNumber);
+    }
+
+    if (typeof input.password === 'string' && input.password.length > 0) {
+      data.password = await this.passwordHasher.hash(input.password);
+    }
+
     return this.prisma.user.update({
       where: { uuid },
-      data: input,
+      data: data as never,
       select: {
         uuid: true,
         companyId: true,

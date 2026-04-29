@@ -1,16 +1,41 @@
 services:
+  postgres_ssl_bootstrap:
+    image: alpine:3.20
+    container_name: identity_postgres_ssl_bootstrap
+    command:
+      [
+        "/bin/sh",
+        "-c",
+        "apk add --no-cache openssl >/dev/null; CRT=/certs/server.crt; KEY=/certs/server.key; if [ ! -f \"$$CRT\" ] || [ ! -f \"$$KEY\" ]; then echo \"Generating self-signed Postgres TLS cert...\"; openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout \"$$KEY\" -out \"$$CRT\" -subj \"/CN=identity_postgres\"; chmod 600 \"$$KEY\"; chown 999:999 \"$$KEY\" \"$$CRT\"; else echo \"Postgres TLS cert already exists.\"; fi; ls -l /certs;"
+      ]
+    volumes:
+      - identity_pgcerts:/certs
+
   postgres:
     image: postgres:16
     container_name: identity_postgres
+    depends_on:
+      postgres_ssl_bootstrap:
+        condition: service_completed_successfully
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: identity
+      POSTGRES_DB: schooldev
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
     ports:
       - "5432:5432"
     volumes:
       - identity_pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./docker/postgres/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - ./docker/postgres/init-schemas.sql:/docker-entrypoint-initdb.d/01-init-schemas.sql:ro
+      - identity_pgcerts:/var/lib/postgresql
+    command: >
+      postgres
+      -c config_file=/etc/postgresql/postgresql.conf
+      -c hba_file=/etc/postgresql/pg_hba.conf
 
 volumes:
   identity_pgdata:
+  identity_pgcerts:
 

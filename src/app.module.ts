@@ -8,6 +8,7 @@ import { TeachersHttpModule } from './entrypoints/http/teachers/teachers.http.mo
 import { UserCompaniesHttpModule } from './entrypoints/http/user-companies/user-companies.http.module';
 import { UserRolesHttpModule } from './entrypoints/http/user-roles/user-roles.http.module';
 import { UsersHttpModule } from './entrypoints/http/users/users.http.module';
+import { AuthHttpModule } from './entrypoints/http/auth/auth.http.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UsersHttpModule } from './entrypoints/http/users/users.http.module';
     TeachersHttpModule,
     UserRolesHttpModule,
     UserCompaniesHttpModule,
+    AuthHttpModule,
   ],
 })
 export class AppModule {}

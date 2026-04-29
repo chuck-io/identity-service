@@ -28,6 +28,8 @@ model User {
   lastName  String   @map("last_name")
   email     String   @unique
   password  String
+  personRegistrationNumber String? @map("person_registration_number")
+  personRegistrationNumberHash String? @map("person_registration_number_hash")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -39,6 +41,7 @@ model User {
   teacher   Teacher?
 
   @@index([companyId])
+  @@index([personRegistrationNumberHash])
   @@map("user")
 }
 

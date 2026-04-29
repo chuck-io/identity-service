@@ -16,6 +16,7 @@ export type UserCreateInput = Readonly<{
   lastName: string;
   email: string;
   password: string;
+  personRegistrationNumber?: string | null;
 }>;
 
 export type UserUpdateInput = Readonly<{
@@ -24,6 +25,7 @@ export type UserUpdateInput = Readonly<{
   lastName?: string;
   email?: string;
   password?: string;
+  personRegistrationNumber?: string | null;
 }>;
 
 export interface UserRepository {

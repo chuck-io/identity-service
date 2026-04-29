@@ -26,5 +26,14 @@ export class CreateUserDto {
   @IsString()
   @MinLength(6)
   password!: string;
+
+  @ApiPropertyOptional({
+    example: '123.456.789-09',
+    description: 'CPF / person registration number (will be encrypted at rest)',
+  })
+  @IsOptional()
+  @IsString()
+  @MinLength(5)
+  personRegistrationNumber?: string;
 }
 

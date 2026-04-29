@@ -15,6 +15,7 @@ yarn
 copy .env.example .env
 docker compose up -d
 yarn prisma:generate
+yarn seed
 ```
 
 ## Run

@@ -15,7 +15,9 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "prisma db seed",
+    "seed": "prisma db seed"
   },
   "keywords": [],
   "author": "",
@@ -25,11 +27,13 @@
     "@nestjs/common": "^11.1.19",
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.19",
+    "@nestjs/jwt": "^11.0.2",
     "@nestjs/mapped-types": "^2.1.1",
     "@nestjs/microservices": "^11.1.19",
     "@nestjs/platform-express": "^11.1.19",
     "@nestjs/swagger": "^11.4.1",
     "@prisma/client": "6",
+    "argon2": "^0.44.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
     "reflect-metadata": "^0.2.2",
@@ -53,5 +57,8 @@
     "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.cjs"
   }
 }
