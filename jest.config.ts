@@ -6,6 +6,9 @@ const config: Config = {
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '.',
   testPathIgnorePatterns: ['/dist/'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.spec.json',

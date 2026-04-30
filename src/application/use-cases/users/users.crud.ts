@@ -1,5 +1,5 @@
-import type { UserCreateInput, UserRepository, UserUpdateInput, UserView } from '../../ports/user.repository';
-import { NotFoundError } from '../../shared/errors/not-found.error';
+import type { UserCreateInput, UserRepository, UserUpdateInput, UserView } from '@/domain/ports/user.repository';
+import { NotFoundError } from '@/application/shared/errors/not-found.error';
 
 export class UsersCrud {
   constructor(private readonly repo: UserRepository) {}

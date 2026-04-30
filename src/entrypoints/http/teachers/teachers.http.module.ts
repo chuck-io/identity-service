@@ -1,19 +1,12 @@
 import { Module } from '@nestjs/common';
 
-import { TEACHER_REPOSITORY } from '../../../application/ports/teacher.repository';
-import { PrismaTeacherRepository } from '../../../infrastructure/database/repositories/prisma-teacher.repository';
+import { ApplicationModule } from '@/application/application.module';
 
 import { TeachersController } from './teachers.controller';
 
 @Module({
+  imports: [ApplicationModule],
   controllers: [TeachersController],
-  providers: [
-    PrismaTeacherRepository,
-    {
-      provide: TEACHER_REPOSITORY,
-      useExisting: PrismaTeacherRepository,
-    },
-  ],
 })
 export class TeachersHttpModule {}
 

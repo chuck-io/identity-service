@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-import type { UserCreateInput, UserRepository, UserUpdateInput } from '../../../application/ports/user.repository';
-import { PrismaService } from '../prisma/prisma.service';
-import { DataEncryptionService } from '../../security/crypto/data-encryption.service';
-import { PasswordHasherService } from '../../security/password/password-hasher.service';
+import type { UserCreateInput, UserRepository, UserUpdateInput } from '@/domain/ports/user.repository';
+import { PrismaService } from '@/infrastructure/database/prisma/prisma.service';
+import { DataEncryptionService } from '@/infrastructure/security/crypto/data-encryption.service';
+import { PasswordHasherService } from '@/infrastructure/security/password/password-hasher.service';
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {

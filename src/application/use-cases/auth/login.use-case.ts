@@ -1,7 +1,7 @@
-import type { AuthRepository } from '../../ports/auth.repository';
-import type { TokenSigner } from '../../ports/token-signer.port';
-import type { AccessToken } from '../../ports/token-signer.port';
-import { UnauthorizedError } from '../../shared/errors/unauthorized.error';
+import type { AuthRepository } from '@/domain/ports/auth.repository';
+import type { TokenSigner } from '@/domain/ports/token-signer.port';
+import type { AccessToken } from '@/domain/ports/token-signer.port';
+import { UnauthorizedError } from '@/application/shared/errors/unauthorized.error';
 
 export class LoginUseCase {
   constructor(

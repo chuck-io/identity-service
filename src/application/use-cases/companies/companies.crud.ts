@@ -3,8 +3,8 @@ import type {
   CompanyRepository,
   CompanyUpdateInput,
   CompanyView,
-} from '../../ports/company.repository';
-import { NotFoundError } from '../../shared/errors/not-found.error';
+} from '@/domain/ports/company.repository';
+import { NotFoundError } from '@/application/shared/errors/not-found.error';
 
 export class CompaniesCrud {
   constructor(private readonly repo: CompanyRepository) {}

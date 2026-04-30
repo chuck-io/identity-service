@@ -1,7 +1,7 @@
-import { Entity } from '../shared/entity/Entity';
-import type { Timestamps } from '../shared/entity/Timestamps';
-import type { Uuid } from '../shared/types/Uuid';
-import { invariant } from '../shared/guards/invariant';
+import { invariant } from '@/domain/shared/guards/invariant';
+import { Entity } from '@/domain/shared/entity/Entity';
+import type { Timestamps } from '@/domain/shared/entity/Timestamps';
+import type { Uuid } from '@/domain/shared/types/Uuid';
 
 export type TeacherProps = Readonly<{
   uuid: Uuid;

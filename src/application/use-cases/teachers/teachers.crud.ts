@@ -3,8 +3,8 @@ import type {
   TeacherRepository,
   TeacherUpdateInput,
   TeacherView,
-} from '../../ports/teacher.repository';
-import { NotFoundError } from '../../shared/errors/not-found.error';
+} from '@/domain/ports/teacher.repository';
+import { NotFoundError } from '@/application/shared/errors/not-found.error';
 
 export class TeachersCrud {
   constructor(private readonly repo: TeacherRepository) {}

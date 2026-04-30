@@ -1,9 +1,9 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus } from '@nestjs/common';
 import type { Response } from 'express';
 
-import { BadRequestError } from '../../../application/shared/errors/bad-request.error';
-import { NotFoundError } from '../../../application/shared/errors/not-found.error';
-import { UnauthorizedError } from '../../../application/shared/errors/unauthorized.error';
+import { BadRequestError } from '@/application/shared/errors/bad-request.error';
+import { NotFoundError } from '@/application/shared/errors/not-found.error';
+import { UnauthorizedError } from '@/application/shared/errors/unauthorized.error';
 
 @Catch(NotFoundError, UnauthorizedError, BadRequestError)
 export class ApplicationErrorFilter implements ExceptionFilter {

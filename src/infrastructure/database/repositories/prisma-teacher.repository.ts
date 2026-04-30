@@ -5,8 +5,8 @@ import type {
   TeacherRepository,
   TeacherUpdateInput,
   TeacherView,
-} from '../../../application/ports/teacher.repository';
-import { PrismaService } from '../prisma/prisma.service';
+} from '@/domain/ports/teacher.repository';
+import { PrismaService } from '@/infrastructure/database/prisma/prisma.service';
 
 @Injectable()
 export class PrismaTeacherRepository implements TeacherRepository {

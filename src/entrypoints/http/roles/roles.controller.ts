@@ -1,10 +1,8 @@
-import { Body, Controller, Delete, Get, Inject, Param, ParseUUIDPipe, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query } from '@nestjs/common';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiParam, ApiTags } from '@nestjs/swagger';
 
-import type { RoleRepository } from '../../../application/ports/role.repository';
-import { ROLE_REPOSITORY } from '../../../application/ports/role.repository';
-import { RolesCrud } from '../../../application/use-cases/roles/roles.crud';
-import { PaginationDto } from '../../../shared/pagination/pagination.dto';
+import { RolesCrud } from '@/application/use-cases/roles/roles.crud';
+import { PaginationDto } from '@/shared/pagination/pagination.dto';
 
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
@@ -13,11 +11,7 @@ import { RoleResponseDto } from './dto/role-response.dto';
 @Controller('roles')
 @ApiTags('roles')
 export class RolesController {
-  private readonly crud: RolesCrud;
-
-  constructor(@Inject(ROLE_REPOSITORY) repo: RoleRepository) {
-    this.crud = new RolesCrud(repo);
-  }
+  constructor(private readonly crud: RolesCrud) {}
 
   @Post()
   @ApiBody({ type: CreateRoleDto })

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 
-import type { AccessToken, TokenSigner } from '../../application/ports/token-signer.port';
+import type { AccessToken, TokenSigner } from '@/domain/ports/token-signer.port';
 
 @Injectable()
 export class JwtTokenSignerService implements TokenSigner {
