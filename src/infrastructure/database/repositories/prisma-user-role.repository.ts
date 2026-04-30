@@ -5,8 +5,8 @@ import type {
   UserRoleRepository,
   UserRoleUpdateInput,
   UserRoleView,
-} from '../../../application/ports/user-role.repository';
-import { PrismaService } from '../prisma/prisma.service';
+} from '@/domain/ports/user-role.repository';
+import { PrismaService } from '@/infrastructure/database/prisma/prisma.service';
 
 @Injectable()
 export class PrismaUserRoleRepository implements UserRoleRepository {

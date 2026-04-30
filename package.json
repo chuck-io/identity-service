@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Identity Service (NestJS microservice) - Hexagonal Architecture",
   "scripts": {
-    "build": "nest build",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
+    "build": "nest build && tsc-alias -p tsconfig.build.json",
+    "start": "node -r tsconfig-paths/register ./node_modules/@nestjs/cli/bin/nest.js start",
+    "start:dev": "node -r tsconfig-paths/register ./node_modules/@nestjs/cli/bin/nest.js start --watch",
+    "start:debug": "node -r tsconfig-paths/register ./node_modules/@nestjs/cli/bin/nest.js start --debug --watch",
     "start:prod": "node dist/main.js",
     "lint": "eslint \"{src,prisma,test}/**/*.ts\" --max-warnings=0",
     "format": "prettier --write \"{src,prisma,test}/**/*.{ts,js,json,md,yml,yaml}\"",
@@ -60,6 +60,8 @@
     "prisma": "6",
     "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^6.0.3"
   },
   "prisma": {

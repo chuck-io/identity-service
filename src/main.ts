@@ -31,6 +31,15 @@ async function bootstrap() {
       .setTitle('Identity Service')
       .setDescription('Identity Service API')
       .setVersion('1.0.0')
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          in: 'header',
+        },
+        'access-token',
+      )
       .build();
 
     const document = SwaggerModule.createDocument(app, swaggerConfig);

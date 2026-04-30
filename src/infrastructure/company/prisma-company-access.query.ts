@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import type { CompanyAccessQuery } from '../../application/ports/company-access.query';
-import { PrismaService } from '../database/prisma/prisma.service';
+import type { CompanyAccessQuery } from '@/domain/ports/company-access.query';
+import { PrismaService } from '@/infrastructure/database/prisma/prisma.service';
 
 @Injectable()
 export class PrismaCompanyAccessQuery implements CompanyAccessQuery {

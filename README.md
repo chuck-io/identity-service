@@ -2,6 +2,18 @@
 
 NestJS microservice boilerplate using **Hexagonal Architecture** + **Prisma (PostgreSQL)**.
 
+## Documentation
+
+Repository documentation lives in `docs/` (ready to migrate to Notion/Confluence):
+
+- `docs/README.md` (documentation hub)
+- `docs/overview.md` (service overview)
+- `docs/ARCHITECTURE.md` + `docs/diagrams.md` (architecture + Mermaid diagrams)
+- `docs/api.md` (Swagger/auth/errors/pagination)
+- `docs/data-dictionary.md` (database dictionary)
+- `docs/SECURITY.md` (sensitive-data handling / encryption)
+- `docs/operations.md` (env vars, runbooks, troubleshooting)
+
 ## Requirements
 
 - Node.js LTS
@@ -43,6 +55,4 @@ After starting the app, CRUD endpoints will be available under:
 - `GET/POST /companies`, `GET/PATCH/DELETE /companies/:uuid`
 - `GET/POST /users`, `GET/PATCH/DELETE /users/:uuid`
 - `GET/POST /teachers`, `GET/PATCH/DELETE /teachers/:uuid`
-- `GET/POST /user-roles`, `GET/PATCH/DELETE /user-roles/:uuid`
-- `GET/POST /user-companies`, `GET/PATCH/DELETE /user-companies/:uuid`
 

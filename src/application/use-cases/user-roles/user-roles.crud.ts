@@ -3,8 +3,8 @@ import type {
   UserRoleRepository,
   UserRoleUpdateInput,
   UserRoleView,
-} from '../../ports/user-role.repository';
-import { NotFoundError } from '../../shared/errors/not-found.error';
+} from '@/domain/ports/user-role.repository';
+import { NotFoundError } from '@/application/shared/errors/not-found.error';
 
 export class UserRolesCrud {
   constructor(private readonly repo: UserRoleRepository) {}

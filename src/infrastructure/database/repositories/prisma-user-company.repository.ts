@@ -5,8 +5,8 @@ import type {
   UserCompanyRepository,
   UserCompanyUpdateInput,
   UserCompanyView,
-} from '../../../application/ports/user-company.repository';
-import { PrismaService } from '../prisma/prisma.service';
+} from '@/domain/ports/user-company.repository';
+import { PrismaService } from '@/infrastructure/database/prisma/prisma.service';
 
 @Injectable()
 export class PrismaUserCompanyRepository implements UserCompanyRepository {

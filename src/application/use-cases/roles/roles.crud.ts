@@ -1,5 +1,5 @@
-import type { RoleCreateInput, RoleRepository, RoleUpdateInput, RoleView } from '../../ports/role.repository';
-import { NotFoundError } from '../../shared/errors/not-found.error';
+import type { RoleCreateInput, RoleRepository, RoleUpdateInput, RoleView } from '@/domain/ports/role.repository';
+import { NotFoundError } from '@/application/shared/errors/not-found.error';
 
 export class RolesCrud {
   constructor(private readonly repo: RoleRepository) {}

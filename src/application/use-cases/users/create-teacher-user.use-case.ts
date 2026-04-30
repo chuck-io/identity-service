@@ -1,10 +1,10 @@
-import type { RoleRepository } from '../../ports/role.repository';
-import type { TeacherRepository } from '../../ports/teacher.repository';
-import type { TransactionRunner } from '../../ports/transaction-runner.port';
-import type { UserRoleRepository } from '../../ports/user-role.repository';
-import type { UserRepository } from '../../ports/user.repository';
-import { BadRequestError } from '../../shared/errors/bad-request.error';
-import { UnauthorizedError } from '../../shared/errors/unauthorized.error';
+import type { RoleRepository } from '@/domain/ports/role.repository';
+import type { TeacherRepository } from '@/domain/ports/teacher.repository';
+import type { TransactionRunner } from '@/domain/ports/transaction-runner.port';
+import type { UserRoleRepository } from '@/domain/ports/user-role.repository';
+import type { UserRepository } from '@/domain/ports/user.repository';
+import { BadRequestError } from '@/application/shared/errors/bad-request.error';
+import { UnauthorizedError } from '@/application/shared/errors/unauthorized.error';
 
 export type CreateTeacherUserInput = Readonly<{
   companyId: string;

@@ -1,4 +1,4 @@
-import { invariant } from '../guards/invariant';
+import { invariant } from '@/domain/shared/guards/invariant';
 
 export type Email = string & { readonly __brand: 'Email' };
 

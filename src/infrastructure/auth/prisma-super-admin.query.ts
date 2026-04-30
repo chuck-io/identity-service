@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
-import { PrismaService } from '../database/prisma/prisma.service';
+import type { SuperAdminQuery } from '@/domain/ports/super-admin.query';
+import { PrismaService } from '@/infrastructure/database/prisma/prisma.service';
 
 @Injectable()
-export class PrismaSuperAdminQuery {
+export class PrismaSuperAdminQuery implements SuperAdminQuery {
   constructor(private readonly prisma: PrismaService) {}
 
   async exists(): Promise<boolean> {
