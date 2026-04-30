@@ -1,7 +1,11 @@
-import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsOptional, IsString, IsUUID, MinLength } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateUserDto {
+  @ApiProperty({ format: 'uuid', description: 'Role UUID to be assigned on creation' })
+  @IsUUID()
+  roleUuid!: string;
+
   @ApiPropertyOptional({ example: 'company_123' })
   @IsOptional()
   @IsString()

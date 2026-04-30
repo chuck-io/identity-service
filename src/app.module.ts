@@ -23,7 +23,7 @@ import { AuthHttpModule } from './entrypoints/http/auth/auth.http.module';
     TeachersHttpModule,
     UserRolesHttpModule,
     UserCompaniesHttpModule,
-    AuthHttpModule,
+    AuthHttpModule.register(),
   ],
 })
 export class AppModule {}

@@ -21,6 +21,8 @@ export class LoginUseCase {
     return this.tokenSigner.signAccessToken({
       sub: user.uuid,
       email: user.email,
+      roles: user.roles,
+      companyId: user.companyId ?? null,
     });
   }
 }

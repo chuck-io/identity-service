@@ -14,6 +14,12 @@ export class PrismaAuthRepository implements AuthRepository {
         uuid: true,
         email: true,
         password: true,
+        companyId: true,
+        roles: {
+          select: {
+            role: { select: { name: true } },
+          },
+        },
       },
     });
 
@@ -23,6 +29,8 @@ export class PrismaAuthRepository implements AuthRepository {
       uuid: user.uuid,
       email: user.email,
       passwordHash: user.password,
+      roles: user.roles.map((ur) => ur.role.name),
+      companyId: user.companyId,
     };
   }
 }

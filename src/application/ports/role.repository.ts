@@ -22,6 +22,7 @@ export interface RoleRepository {
   create(input: RoleCreateInput): Promise<RoleView>;
   findAll(pagination?: { skip?: number; take?: number }): Promise<RoleView[]>;
   findByUuid(uuid: string): Promise<RoleView | null>;
+  findByName(name: string): Promise<RoleView | null>;
   updateByUuid(uuid: string, input: RoleUpdateInput): Promise<RoleView>;
   deleteByUuid(uuid: string): Promise<RoleView>;
 }

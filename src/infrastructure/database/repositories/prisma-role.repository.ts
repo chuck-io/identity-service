@@ -30,6 +30,13 @@ export class PrismaRoleRepository implements RoleRepository {
     });
   }
 
+  findByName(name: string) {
+    return this.prisma.role.findUnique({
+      where: { name },
+      select: { uuid: true, name: true, description: true, createdAt: true, updatedAt: true },
+    });
+  }
+
   updateByUuid(uuid: string, input: RoleUpdateInput) {
     return this.prisma.role.update({
       where: { uuid },

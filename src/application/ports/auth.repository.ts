@@ -4,6 +4,8 @@ export type AuthUser = Readonly<{
   uuid: string;
   email: string;
   passwordHash: string;
+  roles: string[];
+  companyId?: string | null;
 }>;
 
 export interface AuthRepository {
